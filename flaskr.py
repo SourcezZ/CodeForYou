@@ -10,7 +10,7 @@ from PIL import Image
 from flask_login import UserMixin,login_user,LoginManager
 from random import choice,sample
 
-#数据库1
+#数据库
 DATABASE = './flaskr.db'
 DEBUG = True
 SECRET_KEY = 'development key'
