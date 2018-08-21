@@ -1,0 +1,97 @@
+﻿<body style="background-image: url('{{ url_for("static", filename="wonderfulU.png") }}');<!--background-size: cover;--!>">
+  <br>
+  <br>
+  <h1 style="font-weight: bold;font-size:1cm;font-family:YouYuan;color:#F0DAD2;text-align:center">但我知道，</h1>
+  <h1 style="font-weight: bold;font-size:1cm;font-family:YouYuan;color:#F0DAD2;text-align:center">这一切是无比美好的，</h1>
+  <h1 style="font-weight: bold;font-size:1cm;font-family:YouYuan;color:#F0DAD2;text-align:center">它不可思议，</h1>
+  <h1 style="font-weight: bold;font-size:1cm;font-family:YouYuan;color:#F0DAD2;text-align:center">甚至不合情理，</h1>
+  <h1 style="font-weight: bold;font-size:1cm;font-family:YouYuan;color:#F0DAD2;text-align:center">我没有想到这种感觉如此难以抗拒,</h1>
+  <h1 style="font-weight: bold;font-size:1cm;font-family:YouYuan;color:#F0DAD2;text-align:center">更没有想过是你和我一同深陷其中。</h1>
+  <div id="surprise" style="text-align:center">
+          <div class="name" style="padding: 10px">
+                  <el-input v-model="input" placeholder="请输入你的名字" style="width: 400px"></el-input>
+                  <el-button @click="sure">确定</el-button>
+                  <a v-if="flag=='true'" href="./home"><el-button>home</el-button></a>
+          </div>
+          <div style="text-align:left;padding-left:30px">
+
+                  <el-button plain @click="surprise">
+                          a surprise
+                  </el-button>
+          </div>
+  </div>
+  <!-- <div style="position:abusolutely;float: right;"> 
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=461525011&auto=1&height=66"></iframe>
+  </div> -->
+
+  <script src="{{url_for('static', filename='vue/vue.js')}}"></script>
+  <link rel="stylesheet" href="{{url_for('static', filename='vue/index.css')}}">
+  <script src="{{url_for('static', filename='vue/index.js')}}"></script>
+
+  <script>
+          new Vue({
+                  el: "#surprise",
+                  data() {
+                          return {
+                                  input: '',
+                                  out: '',
+                                  flag:'false',
+                          }
+                  },
+                  methods: {
+                          surprise() {
+                                  const h = this.$createElement;
+                                  this.$notify({
+                                          title: 'I',
+                                          message: h('i', 'hid a surprise in your computer'),
+                                          position: 'top-left',
+
+                                  });
+                          },
+                          //确定函数，判断人名
+                          sure() {
+                                  if (this.input === '宋雨蔚') {
+                                          this.open();
+                                  }
+                                  else if (this.input === '何源') {
+                                          this.$message({
+                                                  type: 'info',
+                                                  message: '笨蛋，这是我',
+                                          });
+                                  }
+                                  else {
+                                          this.open2();
+                                  }
+                          },
+                          //打开函数
+                          open() {
+                                  this.$alert('你肯定就是我的宝贝小宋啦', '小宋', {
+                                          confirmButtonText: '确定',
+                                          callback: action => {
+                                                  this.$message({
+                                                          type: 'info',
+                                                          message: '小宋，我喜欢你啊'
+                                                  });
+                                          }
+                                  });
+                                  this.flag='true'
+                          },
+                          //打开函数2
+                          open2() {
+                                  if (this.input != '') {
+                                          this.$message({
+                                                  type: 'info',
+                                                  message: '抱歉，' + this.input,
+                                          });
+                                  } else {
+                                          this.$message({
+                                                  type: 'info',
+                                                  message: '抱歉',
+                                          });
+                                  }
+
+                          },
+                  }
+          })
+
+  </script>
